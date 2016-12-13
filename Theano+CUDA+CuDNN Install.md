@@ -18,12 +18,14 @@ I have to say Nvidia is trying to make this process easier, however that's exact
    * Set path in your enviroment. Edit your .bashrc file, add 
    
    ```
-   export CUDA_ROOT=/usr/local/cuda-8.0
-   export PATH=$PATH:/usr/local/cuda-8.0/bin
-   export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
-   export LIBRARY_PATH=/usr/local/cuda-8.0:$LIBRARY_PATH
-   export CPATH=/usr/local/cuda-8.0/include:$CPATH
+   export CUDA_ROOT=/usr/local/cuda
+   export PATH=$PATH:/usr/local/cuda/bin
+   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+   export LIBRARY_PATH=/usr/local/cuda:$LIBRARY_PATH
+   export CPATH=/usr/local/cuda/include:$CPATH
    ```
+   
+   Note that `/usr/local/cuda` is just a soft-link, pointing to the folder actually containing the files, for CUDA 8.0, it should be `/usr/local/cuda-8.0`
 
 ## Step III: Install CuDNN
 You have to keep in mind that CUDA does not come along with CuDNN, you have to install it by yourself. To install CuDNN, 
