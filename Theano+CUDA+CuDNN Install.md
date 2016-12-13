@@ -16,6 +16,7 @@ I have to say Nvidia is trying to make this process easier, however that's exact
    * Download the locla installer cuda_8.0.44_linux.run from https://developer.nvidia.com/cuda-downloads
    * Install CUDA by `sudo sh cuda_8.0.44_linux.run`
    * Set path in your enviroment. Edit your .bashrc file, add 
+   
    ```
    export CUDA_ROOT=/usr/local/cuda-8.0
    export PATH=$PATH:/usr/local/cuda-8.0/bin
@@ -33,6 +34,7 @@ You have to keep in mind that CUDA does not come along with CuDNN, you have to i
 CNMeM is a library to help the Deep Learning frameworks manage CUDA memory. To install this:
    * Download CNMeM from https://github.com/NVIDIA/cnmem
    * Build CNMeM by 
+   
    ```
    % cd cnmem
    % mkdir build
@@ -41,6 +43,6 @@ CNMeM is a library to help the Deep Learning frameworks manage CUDA memory. To i
    % make
    ```
    * Copy include/cnmem.h to `/usr/local/cuda/include`, any *.so file in build folder to `/usr/local/cuda/lib64`
-   * To enable usage CNMeM in Theano, set environment flag as 'lib.cnmem=1'
+   * To enable usage CNMeM in Theano, set environment flag as `lib.cnmem=1`
 
 Now install Theano, and you should have your code run on GPU & CuDNN now.
