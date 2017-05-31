@@ -7,7 +7,9 @@
 * torch.Tensor() is just an alias of torch.FloatTensor(), not what I expected as an universal constructer which would determine the dtype according to input ndarray. torch.from_numpy() does this job meanwhile.
 * For RNN with multiple layers and dropout enabled, the pytorch implementation does not apply dropout for the last layer.
 * The difference between `LSTM` and `LSTMCell` lies in the input shape: input of `LSTM` is 3D (B, T, D) whereas input of `LSTMCell` is 2D (B, D), i.e., `LSTMCell` is used for just one time step.
-* The `LSTM` implementation of Pytorch has two problems: 1) no peepholes  2) two biases in `i_t, f_t, g_t, o_t`, which is nonsense!
+* The `LSTM` implementation of Pytorch has two problems: 1) no peepholes  2) two biases in `i_t, f_t, g_t, o_t`, which is nonsense (according to Facebook's comment, it's from CuDNN's convention)
+* Pytorch does not support numpy-style broadcasting, so to do element-wise multiplication, for example `X` (3, 50) * `y` (50), you need do `.unsqueeze` and then `.expand`:     `X * y.unsqueeze(0).expand_as(X)`
+
 
 
 
