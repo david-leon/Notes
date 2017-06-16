@@ -9,7 +9,7 @@
 * The difference between `LSTM` and `LSTMCell` lies in the input shape: input of `LSTM` is 3D (B, T, D) whereas input of `LSTMCell` is 2D (B, D), i.e., `LSTMCell` is used for just one time step.
 * The `LSTM` implementation of Pytorch has two problems: 1) no peepholes  2) two biases in `i_t, f_t, g_t, o_t`, which is nonsense (according to Facebook's comment, it's from CuDNN's convention)
 * Pytorch does not support numpy-style broadcasting, so to do element-wise multiplication, for example `X` (3, 50) * `y` (50), you need do `.unsqueeze` and then `.expand`:     `X * y.unsqueeze(0).expand_as(X)`
-
-
+* Even with `batch_first=True`, the hiddens returned by LSTM(GRU, etc) are still of size  `(num_layers * num_directions, batch, hidden_size)`
+* The `CNN` implementation of Pytorch does not do filter flipping by default; and its speed is comparable to Theano's `CNN`, produces exactly the same result, meanwhile `convolve2d()` of scipy is about 2 * times slower, and result slightly different (within 10 `eps`); source code of Pytorch's convolution resides in `pytorch/torch/csrc/autograd/functions/convolution.cpp`
 
 
