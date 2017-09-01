@@ -11,5 +11,7 @@
 * Pytorch does not support numpy-style broadcasting, so to do element-wise multiplication, for example `X` (3, 50) * `y` (50), you need do `.unsqueeze` and then `.expand`:     `X * y.unsqueeze(0).expand_as(X)`
 * Even with `batch_first=True`, the hiddens returned by LSTM(GRU, etc) are still of size  `(num_layers * num_directions, batch, hidden_size)`
 * The `CNN` implementation of Pytorch does not do filter flipping by default; and its speed is comparable to Theano's `CNN`, produces exactly the same result, meanwhile `convolve2d()` of scipy is about 2 * times slower, and result slightly different (within 10 `eps`); source code of Pytorch's convolution resides in `pytorch/torch/csrc/autograd/functions/convolution.cpp`
+* Pytorch does not do weight initialization automatically, you have to define a `reset_parameters()` function yourself, and call it at model initialization.
+
 
 
