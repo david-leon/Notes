@@ -25,5 +25,9 @@ and `y` (50), you need do `.unsqueeze` and then `.expand`:     `X * y.unsqueeze(
 
 * Pytorch does not do weight initialization automatically, you have to define a `reset_parameters()` function yourself, and call it at model initialization.
 
+* `Tensor.numpy()` return a numpy array **sharing** the memory. In another word, it just returns the memory pointer. So we can use this mechanism to **MODIFY** the value of a tensor, though not intuitive.
+
+* To set a model/module to switch between *train/predict* mode, call `nn.Module.train(True/False)`. This function will recursively set every child module's mode. **NEVER** use `self.training=True/False`, this only applies to the current module without effecting its children.
+
 
 
